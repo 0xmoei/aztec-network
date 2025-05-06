@@ -226,6 +226,7 @@ rm -rf ~/.aztec/alpha-testnet/data/
 ```
 
 * 4- Re-run Node
+
 Return to [Step 9: Run Sequencer Node](https://github.com/0xmoei/aztec-network/edit/main/README.md#9-sequencer-node) to re-run your node
 
 ---
