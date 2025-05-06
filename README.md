@@ -205,7 +205,7 @@ If your Validator Registration was successfull, you can check its stats in [Azte
 
 ---
 
-## Update Sequencer Node
+## 🔃 Update Sequencer Node
 * 1- Stop Node:
 ```console
 # Kill all Aztec docker containers
