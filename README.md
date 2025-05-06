@@ -208,14 +208,11 @@ If your Validator Registration was successfull, you can check its stats in [Azte
 ## Update Sequencer Node
 * 1- Stop Node:
 ```console
-# Kill Node (if inside screen)
-Press Ctrl + C
+# Kill all Aztec docker containers
+docker stop $(docker ps -q --filter "ancestor=aztecprotocol/aztec") && docker rm $(docker ps -a -q --filter "ancestor=aztecprotocol/aztec")
 
-# Kill Node (if outside screen)
-screen -XS aztec quit
-
-# Kill Node & all screens using a general command
-docker stop $(docker ps -q --filter "ancestor=aztecprotocol/aztec") && docker rm $(docker ps -a -q --filter "ancestor=aztecprotocol/aztec") & screen -ls | grep aztec | awk '{print $1}' | xargs -I {} screen -X -S {} quit
+# Kill all Aztec screens
+screen -ls | grep -i aztec | awk '{print $1}' | xargs -I {} screen -X -S {} quit
 ```
 
 * 2- Update Node:
