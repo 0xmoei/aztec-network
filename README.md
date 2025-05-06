@@ -205,8 +205,16 @@ Replace `RPC_URL`, `your-validator-address` & 2x `your-validator-address`, then 
 
 * Note that there's a daily quota of 10 validator registration per day, if you get error, try again tommorrow.
 
-## 13. Check Validator
-If your Validator Registration was successfull, you can check its stats in [Aztec Scan](https://aztecscan.xyz/validators)
+## 13. Node's Health
+### Node's Peer ID:
+**Find your Node's Peer ID:**
+```bash
+sudo docker logs $(docker ps -q --filter ancestor=aztecprotocol/aztec:alpha-testnet | head -n 1) 2>&1 | grep -i "peerId" | grep -o '"peerId":"[^"]*"' | cut -d'"' -f4 | head -n 1
+```
+* This reveals your Node's Peer ID, Now search it on [Nethermind Dashboard](https://aztec.nethermind.io/)
+
+### Validator's Registration:
+If your Validator's Registration was successfull, you can check its stats on [Aztec Scan](https://aztecscan.xyz/validators)
 
 ---
 
