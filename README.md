@@ -211,7 +211,7 @@ Replace `RPC_URL`, `your-validator-address` & 2x `your-validator-address`, then 
 ```bash
 sudo docker logs $(docker ps -q --filter ancestor=aztecprotocol/aztec:alpha-testnet | head -n 1) 2>&1 | grep -i "peerId" | grep -o '"peerId":"[^"]*"' | cut -d'"' -f4 | head -n 1
 ```
-* This reveals your Node's Peer ID, Now search it on [Nethermind Dashboard](https://aztec.nethermind.io/)
+* This reveals your Node's Peer ID, Now search it on [Nethermind Explorer](https://aztec.nethermind.io/)
 
 ### Validator's Registration:
 If your Validator's Registration was successfull, you can check its stats on [Aztec Scan](https://aztecscan.xyz/validators)
