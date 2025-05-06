@@ -120,7 +120,7 @@ ufw allow 40400
 ufw allow 8080
 ```
 
-## 9. Sequencer Node
+## 9. Run Sequencer Node
 * Open screen
 ```bash
 screen -S aztec
@@ -202,6 +202,34 @@ Replace `RPC_URL`, `your-validator-address` & 2x `your-validator-address`, then 
 
 ## 13. Check Validator
 If your Validator Registration was successfull, you can check its stats in [Aztec Scan](https://aztecscan.xyz/validators)
+
+---
+
+## Update Sequencer Node
+* 1- Stop Node:
+```console
+# Kill Node (if inside screen)
+Press Ctrl + C
+
+# Kill Node (if outside screen)
+screen -XS aztec quit
+
+# Kill Node & all screens using a general command
+docker stop $(docker ps -q --filter "ancestor=aztecprotocol/aztec") && docker rm $(docker ps -a -q --filter "ancestor=aztecprotocol/aztec") & screen -ls | grep aztec | awk '{print $1}' | xargs -I {} screen -X -S {} quit
+```
+
+* 2- Update Node:
+```bash
+aztec-up alpha-testnet
+```
+
+* 3- Delete old data:
+```bash
+rm -rf ~/.aztec/alpha-testnet/data/
+```
+
+* 4- Re-run Node
+Return to [Step 9: Run Sequencer Node](https://github.com/0xmoei/aztec-network/edit/main/README.md#9-sequencer-node) to re-run your node
 
 ---
 
