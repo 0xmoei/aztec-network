@@ -72,6 +72,13 @@ source ~/.bash
 ```
 * **Restart your Terminal** now to apply changes.
 * Check if you installed successfully:
+```
+echo 'export PATH="$HOME/.aztec/bin:$PATH"' >> ~/.bashrc
+source ~/.bashrc
+```
+
+
+
 ```bash
 aztec
 ```
