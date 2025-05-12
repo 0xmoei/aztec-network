@@ -1,4 +1,4 @@
-# aztec-network
+# Aztec Network Sequencer Node
 A step by step guide on How to Run `Sequencer Node` on Aztec Network Testnet & Earn `Apprentice` Role.
 
 * **What types of nodes can participate in the testnet?**
