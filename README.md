@@ -13,7 +13,22 @@ After running and syncing your Sequencer node, You can go through [Get Role](htt
 ---
 
 ## Hardware Requirements
-* **Sequencer Node**: 4-8 cores CPU, 8-16 GB RAM, 100+ GB SSD
+<table>
+  <tr>
+    <th colspan="3"> Sequencer Node HW Requirements </th>
+  </tr>
+  <tr>
+    <td>RAM</td>
+    <td>CPU</td>
+    <td>Disk</td>
+  </tr>
+  <tr>
+    <td><code>8-16 GB</code></td>
+    <td><code>4-9 cores</code></td>
+    <td><code>100+ GB SSD</code></td>
+  </tr>
+</table>
+
 * **Prover Node**: Requiring ~40x machines with 16 cores and 128GB RAM
 * I don't run `Prover` since it's for data-center computing systems, not me.
 
