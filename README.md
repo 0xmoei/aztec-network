@@ -6,14 +6,16 @@ A step by step guide on How to Run `Sequencer Node` on Aztec Network Testnet & E
   * `Prover`: generates ZK proofs that attest to roll-up integrity.
 
 ## Roles Info
-Find this message about roles in channel: [operators| start-here](https://discord.com/channels/1144692727120937080/1367196595866828982/1367323893324582954)
+Sequecner Nodes will receive a certain role for their contribution on Discord.
 
-![image](https://github.com/user-attachments/assets/5e0fc94a-6494-49d5-ba60-71d0d7dad605)
+After running and syncing your Sequencer node, You can go through [Get Role](https://github.com/0xmoei/aztec-network/blob/main/README.md#get-apprentice-discord-role) step.
+
+---
 
 ## Hardware Requirements
-* **Sequencer Node**: 8 cores CPU, 16GB RAM, 100GB+ SSD
+* **Sequencer Node**: 4-8 cores CPU, 8-16 GB RAM, 100+ GB SSD
 * **Prover Node**: Requiring ~40x machines with 16 cores and 128GB RAM
-* I do NOT run `Prover` sicne it's for data-center computing systems, not me.
+* I don't run `Prover` since it's for data-center computing systems, not me.
 
 ---
 
