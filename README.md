@@ -146,8 +146,8 @@ aztec start --node --archiver --sequencer \
 ```
 Replace the following variables before you Run Node:
 * `RPC_URL` & `BEACON_URL`: Step 4
-* `0xYourPrivateKey`: Your EVM wallet private key
-* `0xYourAddress`: Your EVM wallet public address
+* `0xYourPrivateKey`: Your EVM wallet private key starting with `0x...`
+* `0xYourAddress`: Your EVM wallet public address starting with `0x...`
 * `IP`: Your server IP (Step 7)
 
 ### Optional Commands:
