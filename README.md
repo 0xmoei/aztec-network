@@ -156,42 +156,18 @@ Replace the following variables before you Run Node:
 * Kill screen (when outside): `screen -XS aztec quit`
 
 ## 10. Sync Node
-After entering the command, your node starts running, It takes a few minutes for your node to get synced
+After entering the command, your node starts running, It takes a few minutes for your node to get synced.
 
-## 11. Get Role
-Go to the discord channel :[operators| start-here](https://discord.com/channels/1144692727120937080/1367196595866828982/1367323893324582954) and follow the prompts, You can continue the guide with my commands if you need help.
-
-![image](https://github.com/user-attachments/assets/90e9d34e-724b-481a-b41f-69b1eb4c9f65)
-
-**Step 1: Get the latest proven block number:**
-```bash
+* Check the latest synced block number of your sequencer:
+```
 curl -s -X POST -H 'Content-Type: application/json' \
 -d '{"jsonrpc":"2.0","method":"node_getL2Tips","params":[],"id":67}' \
 http://localhost:8080 | jq -r ".result.proven.number"
 ```
-* Save this block number for the next steps
-* Example output: 20905
+* Check the latest block number of Aztec network: https://aztecscan.xyz/
 
-**Step 2: Generate your sync proof**
-```bash
-curl -s -X POST -H 'Content-Type: application/json' \
--d '{"jsonrpc":"2.0","method":"node_getArchiveSiblingPath","params":["BLOCK_NUMBER","BLOCK_NUMBER"],"id":67}' \
-http://localhost:8080 | jq -r ".result"
-```
-* Replace 2x `BLOCK_NUMBER` with your number
-
-**Step 3: Register with Discord**
-* Type the following command in this Discord server: `/operator start`
-* After typing the command, Discord will display option fields that look like this:
-* `address`:            Your validator address (Ethereum Address)
-* `block-number`:      Block number for verification (Block number from Step 1)
-* `proof`:             Your sync proof (base64 string from Step 2)
-
-Then you'll get your `Apprentice` Role
-
-![image](https://github.com/user-attachments/assets/2ae9ff7c-59ba-43ec-9a23-76ef8ccb997c)
-
-## 12. Register Validator
+## 11. Register Validator
+Make sure your Sequencer node is fully synced, before you proceed with Validator registration
 ```bash
 aztec add-l1-validator \
   --l1-rpc-urls RPC_URL \
@@ -203,18 +179,16 @@ aztec add-l1-validator \
 ```
 Replace `RPC_URL`, `your-validator-address` & 2x `your-validator-address`, then proceed
 
-* Note that there's a daily quota of 10 validator registration per day, if you get error, try again tommorrow.
+* Note: There's a daily quota of 5 validators registration per day, if you get error, try again tommorrow.
+* If your Validator's Registration was successfull, you can check its stats on [Aztec Scan](https://aztecscan.xyz/validators)
 
-## 13. Node's Health
-### Node's Peer ID:
+## 12. Verify Node's Peer ID:
 **Find your Node's Peer ID:**
 ```bash
 sudo docker logs $(docker ps -q --filter ancestor=aztecprotocol/aztec:alpha-testnet | head -n 1) 2>&1 | grep -i "peerId" | grep -o '"peerId":"[^"]*"' | cut -d'"' -f4 | head -n 1
 ```
 * This reveals your Node's Peer ID, Now search it on [Nethermind Explorer](https://aztec.nethermind.io/)
-
-### Validator's Registration:
-If your Validator's Registration was successfull, you can check its stats on [Aztec Scan](https://aztecscan.xyz/validators)
+* Note: It might takes some hours for your node to show up in Nethermind Explorer after it fully synced.
 
 ---
 
@@ -255,3 +229,38 @@ No strong solution for this yet, but you can do the following things
 rm -r /root/.aztec/alpha-testnet
 ```
 * Re-run the node using run command.
+
+---
+
+## Get Apprentice Discord Role:
+Go to the discord channel :[operators| start-here](https://discord.com/channels/1144692727120937080/1367196595866828982/1367323893324582954) and follow the prompts, You can continue the guide with my commands if you need help.
+
+![image](https://github.com/user-attachments/assets/90e9d34e-724b-481a-b41f-69b1eb4c9f65)
+
+**Step 1: Get the latest proven block number:**
+```bash
+curl -s -X POST -H 'Content-Type: application/json' \
+-d '{"jsonrpc":"2.0","method":"node_getL2Tips","params":[],"id":67}' \
+http://localhost:8080 | jq -r ".result.proven.number"
+```
+* Save this block number for the next steps
+* Example output: 20905
+
+**Step 2: Generate your sync proof**
+```bash
+curl -s -X POST -H 'Content-Type: application/json' \
+-d '{"jsonrpc":"2.0","method":"node_getArchiveSiblingPath","params":["BLOCK_NUMBER","BLOCK_NUMBER"],"id":67}' \
+http://localhost:8080 | jq -r ".result"
+```
+* Replace 2x `BLOCK_NUMBER` with your number
+
+**Step 3: Register with Discord**
+* Type the following command in this Discord server: `/operator start`
+* After typing the command, Discord will display option fields that look like this:
+* `address`:            Your validator address (Ethereum Address)
+* `block-number`:      Block number for verification (Block number from Step 1)
+* `proof`:             Your sync proof (base64 string from Step 2)
+
+Then you'll get your `Apprentice` Role
+
+![image](https://github.com/user-attachments/assets/2ae9ff7c-59ba-43ec-9a23-76ef8ccb997c)
