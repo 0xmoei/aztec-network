@@ -78,6 +78,8 @@ sudo systemctl enable docker
 sudo systemctl restart docker
 ```
 
+---
+
 ## 2. Install Aztec Tools
 ```bash
 bash -i <(curl -s https://install.aztec.network)
@@ -93,17 +95,24 @@ source ~/.bashrc
 aztec
 ```
 
+---
+
 ## 3. Update Aztec
 ```bash
 aztec-up alpha-testnet
 ```
 
+---
+
 ## 4. Obtain RPC URLs
 * Find a 3rd party that supports Sepolia `RPC URL` & Sepolia `BEACON URL` APIs.
-* Most of your usage is `RPC URL`. I recommend to use [Alchemy](https://dashboard.alchemy.com/) for `RPC URL` & Use [drpc](https://drpc.org/) for `Beacon URL`
-* More details on Free & Paid 3rd party solutions:
-* You can run your own local RPC nodes by following this guide: [geth-prysm-node](https://github.com/0xmoei/geth-prysm-node) . You may need 600-1000 GB SSD
+* Most of your usage is `RPC URL`. I recommend to use [Alchemy](https://dashboard.alchemy.com/) for `RPC URL` & Use [drpc](https://drpc.org/) for `Beacon URL`.
+  
+**More details on RPC solutions**:
 
+### Get Your Own RPC by Running Geth & Prysm Nodes
+* You can run your own local RPC nodes by following this guide: [geth-prysm-node](https://github.com/0xmoei/geth-prysm-node). You may need 600-1000 GB SSD
+  
 ### Free:
 * `RPC URL`: Create a Sepolia Ethereum HTTP API in [Alchemy](https://dashboard.alchemy.com/)
 * `BEACON RPC`: Create an account on [drpc](https://drpc.org/) and search for `Sepolia Ethereum Beacon Chain ` Endpoints.
@@ -119,17 +128,25 @@ For example: [Ankr](https://www.ankr.com/rpc/?utm_referral=LqL9Sv86Te) is suppor
 
 > You can run your own Geth & Prysm nodes to get your own `RPC URL` & `BEACON RPC` or find any other 3rd party solutions
 
+---
+
 ## 5. Generate Ethereum Keys
 Get an EVM Wallet with `Private Key` and `Public Address` saved.
 
+---
+
 ## 6. Get Sepolia ETH
 Fund your Ethereum Wallet with `ETH Sepolia`
+
+---
 
 ## 7. Find IP
 ```bash
 curl ipv4.icanhazip.com
 ```
 * Save it
+
+---
 
 ## 8. Enable Firewall & Open Ports
 ```console
@@ -143,7 +160,101 @@ ufw allow 40400
 ufw allow 8080
 ```
 
+---
+
 ## 9. Run Sequencer Node
+You can go through one the two methods: CLI / Docker
+
+### Method 1: Run using Docker (Recommended)
+* Delete CLI Node
+```bash
+# Stop docker containers
+docker stop $(docker ps -q --filter "ancestor=aztecprotocol/aztec") && docker rm $(docker ps -a -q --filter "ancestor=aztecprotocol/aztec")
+
+# Stop screens
+screen -ls | grep -i aztec | awk '{print $1}' | xargs -I {} screen -X -S {} quit
+```
+
+* Create `aztec` directory:
+```bash
+mkdir aztec
+```
+
+* Get into `aztec` directory:
+```bash
+cd aztec
+```
+ 
+* Create `.env`
+```bash
+nano .env
+```
+
+* Replace the following code in `.env`
+```env
+ETHEREUM_RPC_URL=RPC_URL
+CONSENSUS_BEACON_URL=BEACON_URL
+VALIDATOR_PRIVATE_KEY=0xYourPrivateKey
+COINBASE=0xYourAddress
+P2P_IP=P2P_IP
+```
+* Replace the following variables before you Run Node:
+  * `RPC_URL` & `BEACON_URL`: Step 4
+  * `0xYourPrivateKey`: Your EVM wallet private key starting with `0x...`
+  * `0xYourAddress`: Your EVM wallet public address starting with `0x...`
+  * `P2P_IP`: Your server IP (Step 7)
+
+
+* Create `docker-compose.yml`:
+```bash
+nano docker-compose.yml
+```
+
+* Replace the following code in `docker-compose.yml`
+```yml
+services:
+  aztec-node:
+    container_name: aztec-sequencer
+    network_mode: host 
+    image: aztecprotocol/aztec:alpha-testnet
+    restart: unless-stopped
+    environment:
+      ETHEREUM_HOSTS: ${ETHEREUM_RPC_URL}
+      L1_CONSENSUS_HOST_URLS: ${CONSENSUS_BEACON_URL}
+      DATA_DIRECTORY: /data
+      VALIDATOR_PRIVATE_KEY: ${VALIDATOR_PRIVATE_KEY}
+      COINBASE: ${COINBASE}
+      P2P_IP: ${P2P_IP}
+      LOG_LEVEL: debug
+    entrypoint: >
+      sh -c 'node --no-warnings /usr/src/yarn-project/aztec/dest/bin/index.js start --network alpha-testnet --node --archiver --sequencer'
+    ports:
+      - 40400:40400/tcp
+      - 40400:40400/udp
+      - 8080:8080
+    volumes:
+      - /root/.aztec/alpha-testnet/data/:/data
+```
+Note: My node data directory configued in `docker-compose.yml` is `/root/.aztec/alpha-testnet/data/`, yours can be anything.
+
+* Run Node Docker:
+```bash
+docker compose up -d
+```
+
+* Node Logs:
+ ```bash
+docker compose logs -fn 1000
+```
+
+* Optional: Stop and Kill Node
+```bash
+docker compose down -v
+```
+* Done, you can now head to Step 10.
+
+
+### Method 2: Run using CLI
 * Open screen
 ```bash
 screen -S aztec
@@ -157,21 +268,22 @@ aztec start --node --archiver --sequencer \
   --l1-consensus-host-urls BEACON_URL \
   --sequencer.validatorPrivateKey 0xYourPrivateKey \
   --sequencer.coinbase 0xYourAddress \
-  --p2p.p2pIp IP
+  --p2p.p2pIp P2P_IP
   --p2p.maxTxPoolSize 1000000000
 ```
 Replace the following variables before you Run Node:
 * `RPC_URL` & `BEACON_URL`: Step 4
 * `0xYourPrivateKey`: Your EVM wallet private key starting with `0x...`
 * `0xYourAddress`: Your EVM wallet public address starting with `0x...`
-* `IP`: Your server IP (Step 7)
+* `P2P_IP`: Your server IP (Step 7)
 
-### Optional Commands:
-**Screen Commands:**
+### Optional CLI + Screen Commands:
 * Minimze screen: `Ctrl` + `A` + `D`
 * Return to screen: `screen -r aztec`
 * Kill screen (when inside): `Ctrl`+`C+
 * Kill screen (when outside): `screen -XS aztec quit`
+
+---
 
 ## 10. Sync Node
 After entering the command, your node starts running, It takes a few minutes for your node to get synced.
@@ -183,6 +295,8 @@ curl -s -X POST -H 'Content-Type: application/json' \
 http://localhost:8080 | jq -r ".result.proven.number"
 ```
 * Check the latest block number of Aztec network: https://aztecscan.xyz/
+
+---
 
 ## 11. Register Validator
 Make sure your Sequencer node is fully synced, before you proceed with Validator registration
@@ -200,6 +314,8 @@ Replace `RPC_URL`, `your-validator-address` & 2x `your-validator-address`, then 
 * Note: There's a daily quota of 5 validators registration per day, if you get error, try again tommorrow.
 * If your Validator's Registration was successfull, you can check its stats on [Aztec Scan](https://aztecscan.xyz/validators)
 
+---
+
 ## 12. Verify Node's Peer ID:
 **Find your Node's Peer ID:**
 ```bash
@@ -210,14 +326,25 @@ sudo docker logs $(docker ps -q --filter ancestor=aztecprotocol/aztec:alpha-test
 
 ---
 
+## Sequencer/Validator Health Check
+* Validator attestation stats:
+
+https://t.me/aztec_seer_bot
+
+![image](https://github.com/user-attachments/assets/04ca9f5d-ba72-43be-98ad-3601255000bf)
+
+---
+
 ## 🔃 Update Sequencer Node
 * 1- Stop Node:
 ```console
-# Kill all Aztec docker containers
+# CLI
 docker stop $(docker ps -q --filter "ancestor=aztecprotocol/aztec") && docker rm $(docker ps -a -q --filter "ancestor=aztecprotocol/aztec")
 
-# Kill all Aztec screens
 screen -ls | grep -i aztec | awk '{print $1}' | xargs -I {} screen -X -S {} quit
+
+# Docker
+docker compose down
 ```
 
 * 2- Update Node:
