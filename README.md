@@ -253,7 +253,6 @@ docker compose down -v
 ```
 * Done, you can now head to Step 10.
 
----
 
 ### Method 2: Run via CLI
 * Open screen
