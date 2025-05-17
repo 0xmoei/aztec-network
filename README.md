@@ -163,7 +163,9 @@ ufw allow 8080
 ---
 
 ## 9. Run Sequencer Node
-We now run Aztec Sequencer through `docker-compose.yml`, and not cli.
+You can run Sequencer Node through one of these two methods: `Docker` or `CLI`
+
+### Method 1: Run via Docker (Recommended)
 * Delete CLI Node
 ```bash
 # Stop docker containers
@@ -250,6 +252,38 @@ docker compose logs -fn 1000
 docker compose down -v
 ```
 * Done, you can now head to Step 10.
+
+---
+
+### Method 2: Run via CLI
+* Open screen
+```bash
+screen -S aztec
+```
+
+* Run Node
+```
+aztec start --node --archiver --sequencer \
+  --network alpha-testnet \
+  --l1-rpc-urls RPC_URL  \
+  --l1-consensus-host-urls BEACON_URL \
+  --sequencer.validatorPrivateKey 0xYourPrivateKey \
+  --sequencer.coinbase 0xYourAddress \
+  --p2p.p2pIp IP
+  --p2p.maxTxPoolSize 1000000000
+```
+Replace the following variables before you Run Node:
+* `RPC_URL` & `BEACON_URL`: Step 4
+* `0xYourPrivateKey`: Your EVM wallet private key starting with `0x...`
+* `0xYourAddress`: Your EVM wallet public address starting with `0x...`
+* `IP`: Your server IP (Step 7)
+
+### Optional Commands:
+**Screen Commands:**
+* Minimze screen: `Ctrl` + `A` + `D`
+* Return to screen: `screen -r aztec`
+* Kill screen (when inside): `Ctrl`+`C+
+* Kill screen (when outside): `screen -XS aztec quit`
 
 ---
 
