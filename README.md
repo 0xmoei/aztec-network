@@ -351,6 +351,8 @@ docker compose down
 * 2- Update Node:
 ```bash
 aztec-up alpha-testnet
+
+docker compose pull
 ```
 
 * 3- Delete old data:
