@@ -38,6 +38,6 @@ nano docker-compose.yml
 rm -rf ~/.aztec/alpha-testnet/data/
 ```
 
-* 4- Re-run Node
+### 4- Re-run Node
 
 Return to [Step 9: Run Sequencer Node](https://github.com/0xmoei/aztec-network/blob/main/README.md#9-run-sequencer-node) to re-run your node
