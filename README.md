@@ -347,6 +347,7 @@ screen -ls | grep -i aztec | awk '{print $1}' | xargs -I {} screen -X -S {} quit
 
 ### 2- Update Node:
 ```bash
+source ~/.bashrc
 aztec-up latest
 ```
 
