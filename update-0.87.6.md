@@ -31,12 +31,13 @@ nano docker-compose.yml
 ![image](https://github.com/user-attachments/assets/c78b70be-f120-48d0-9723-59246ed20d68)
 
 
-### Notes:
-* Wait for Discord update for the `latest` version stability.
-* After update you can switch to `latest` version.
-* `Docker`: Replace docker image with `aztecprotocol/aztec:alpha-testnet`
-* `CLI`: Enter command: `aztec-up alpha-testnet`
-
 ### 3- Re-run Node
 
 Return to [Step 9: Run Sequencer Node](https://github.com/0xmoei/aztec-network/blob/main/README.md#9-run-sequencer-node) to re-run your node
+
+
+### Notes:
+* Wait for Discord update for the `latest` version stability.
+* After update you can switch to `latest` version by:
+  * `Docker`: Replace docker image with `aztecprotocol/aztec:alpha-testnet`
+  * `CLI`: Enter command: `aztec-up alpha-testnet`
