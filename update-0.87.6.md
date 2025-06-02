@@ -26,6 +26,10 @@ cd aztec
 nano docker-compose.yml
 ```
 * Replace `aztecprotocol/aztec:alpha-testnet` with `aztecprotocol/aztec:0.87.6`
+* Add `      P2P_MAX_TX_POOL_SIZE: 1000000000` under `environment`:
+
+![image](https://github.com/user-attachments/assets/c78b70be-f120-48d0-9723-59246ed20d68)
+
 
 ### Notes:
 * Wait for Discord update for the `latest` version stability.
