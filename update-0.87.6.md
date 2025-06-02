@@ -37,7 +37,5 @@ Return to [Step 9: Run Sequencer Node](https://github.com/0xmoei/aztec-network/b
 
 
 ### Notes:
-* Wait for Discord update for the `latest` version stability.
-* After update you can switch to `latest` version by:
-  * `Docker`: Replace docker image with `aztecprotocol/aztec:alpha-testnet`
-  * `CLI`: Enter command: `aztec-up alpha-testnet`
+* For now `aztec:0.87.6` is the most compatible version.
+* Wait for new Discord announcements regarding the stability of `latest` or any newest version. The steps are exactly above but with newest version.
