@@ -362,8 +362,9 @@ rm -rf ~/.aztec/alpha-testnet/data/
 ```
 
 * 4- Re-run Node
-
-Return to [Step 9: Run Sequencer Node](https://github.com/0xmoei/aztec-network/blob/main/README.md#9-run-sequencer-node) to re-run your node
+  * `CLI` Nodes: Re-run using your previous CLI command
+  * `Docker` Nodes: Re-run by entering `cd aztec && docker compose up -d`
+* For more detailed steps, return to [Step 9: Run Sequencer Node](https://github.com/0xmoei/aztec-network/blob/main/README.md#9-run-sequencer-node) to re-run your node.
 
 ---
 
