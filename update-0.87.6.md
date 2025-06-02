@@ -19,7 +19,6 @@ docker compose down
 ```bash
 aztec-up -v latest
 ```
-* Now, re-run your node with CLI command.
 
 **`Docker` Nodes:**
 ```bash
@@ -27,7 +26,6 @@ cd aztec
 nano docker-compose.yml
 ```
 * Replace `aztecprotocol/aztec:alpha-testnet` with `aztecprotocol/aztec:0.87.6`
-* Now, re-run your node with `docker compose up -d`
 
 ### Notes:
 * Wait for Discord update for the `latest` version stability.
@@ -35,11 +33,6 @@ nano docker-compose.yml
 * `Docker`: Replace docker image with `aztecprotocol/aztec:alpha-testnet`
 * `CLI`: Enter command: `aztec-up alpha-testnet`
 
-* 3- Delete old data:
-```bash
-rm -rf ~/.aztec/alpha-testnet/data/
-```
-
-### 4- Re-run Node
+### 3- Re-run Node
 
 Return to [Step 9: Run Sequencer Node](https://github.com/0xmoei/aztec-network/blob/main/README.md#9-run-sequencer-node) to re-run your node
