@@ -340,7 +340,6 @@ https://t.me/aztec_seer_bot
 ## 🔃 Update Sequencer Node
 * 1- Stop Node:
 ```console
-# CLI
 docker stop $(docker ps -q --filter "ancestor=aztecprotocol/aztec") && docker rm $(docker ps -a -q --filter "ancestor=aztecprotocol/aztec")
 
 screen -ls | grep -i aztec | awk '{print $1}' | xargs -I {} screen -X -S {} quit
