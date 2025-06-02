@@ -225,6 +225,7 @@ services:
       VALIDATOR_PRIVATE_KEY: ${VALIDATOR_PRIVATE_KEY}
       COINBASE: ${COINBASE}
       P2P_IP: ${P2P_IP}
+      P2P_MAX_TX_POOL_SIZE: 1000000000
       LOG_LEVEL: debug
     entrypoint: >
       sh -c 'node --no-warnings /usr/src/yarn-project/aztec/dest/bin/index.js start --network alpha-testnet --node --archiver --sequencer'
@@ -350,7 +351,7 @@ docker compose down
 
 * 2- Update Node:
 ```bash
-aztec-up alpha-testnet
+aztec-up latest
 
 docker compose pull
 ```
