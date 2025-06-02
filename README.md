@@ -348,8 +348,6 @@ screen -ls | grep -i aztec | awk '{print $1}' | xargs -I {} screen -X -S {} quit
 * 2- Update Node:
 ```bash
 aztec-up latest
-
-docker compose pull
 ```
 
 * 3- Delete old data:
