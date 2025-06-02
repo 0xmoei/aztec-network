@@ -216,7 +216,7 @@ services:
   aztec-node:
     container_name: aztec-sequencer
     network_mode: host 
-    image: aztecprotocol/aztec:alpha-testnet
+    image: aztecprotocol/aztec:latest
     restart: unless-stopped
     environment:
       ETHEREUM_HOSTS: ${ETHEREUM_RPC_URL}
