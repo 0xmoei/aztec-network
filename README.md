@@ -99,7 +99,7 @@ aztec
 
 ## 3. Update Aztec
 ```bash
-aztec-up alpha-testnet
+aztec-up latest
 ```
 
 ---
