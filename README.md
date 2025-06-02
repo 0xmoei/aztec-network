@@ -338,19 +338,19 @@ https://t.me/aztec_seer_bot
 ---
 
 ## 🔃 Update Sequencer Node
-* 1- Stop Node:
+### 1- Stop Node:
 ```console
 docker stop $(docker ps -q --filter "ancestor=aztecprotocol/aztec") && docker rm $(docker ps -a -q --filter "ancestor=aztecprotocol/aztec")
 
 screen -ls | grep -i aztec | awk '{print $1}' | xargs -I {} screen -X -S {} quit
 ```
 
-* 2- Update Node:
+### 2- Update Node:
 ```bash
 aztec-up latest
 ```
 
-* 3- Delete old data:
+### 3- Delete old data:
 ```bash
 rm -rf ~/.aztec/alpha-testnet/data/
 ```
