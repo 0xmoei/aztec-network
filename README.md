@@ -225,7 +225,6 @@ services:
       VALIDATOR_PRIVATE_KEY: ${VALIDATOR_PRIVATE_KEY}
       COINBASE: ${COINBASE}
       P2P_IP: ${P2P_IP}
-      P2P_MAX_TX_POOL_SIZE: 100000000
       LOG_LEVEL: debug
     entrypoint: >
       sh -c 'node --no-warnings /usr/src/yarn-project/aztec/dest/bin/index.js start --network alpha-testnet --node --archiver --sequencer'
