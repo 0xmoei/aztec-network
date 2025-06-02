@@ -321,7 +321,7 @@ Replace `RPC_URL`, `your-validator-address` & 2x `your-validator-address`, then 
 ## 12. Verify Node's Peer ID:
 **Find your Node's Peer ID:**
 ```bash
-sudo docker logs $(docker ps -q --filter ancestor=aztecprotocol/aztec:alpha-testnet | head -n 1) 2>&1 | grep -i "peerId" | grep -o '"peerId":"[^"]*"' | cut -d'"' -f4 | head -n 1
+sudo docker logs $(docker ps -q --filter ancestor=aztecprotocol/aztec:latest | head -n 1) 2>&1 | grep -i "peerId" | grep -o '"peerId":"[^"]*"' | cut -d'"' -f4 | head -n 1
 ```
 * This reveals your Node's Peer ID, Now search it on [Nethermind Explorer](https://aztec.nethermind.io/)
 * Note: It might takes some hours for your node to show up in Nethermind Explorer after it fully synced.
