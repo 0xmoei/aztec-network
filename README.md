@@ -370,35 +370,13 @@ If you encountered: `ERROR: world-state:block_stream Error processing block stre
 
 ---
 
-## Get Apprentice Discord Role:
-Go to the discord channel :[operators| start-here](https://discord.com/channels/1144692727120937080/1367196595866828982/1367323893324582954) and follow the prompts, You can continue the guide with my commands if you need help.
+## Get Guardian Discord Role:
+Claim the Guardian role as you are running a Sequencer Node and keep an uptime.
 
-![image](https://github.com/user-attachments/assets/90e9d34e-724b-481a-b41f-69b1eb4c9f65)
+* To claim:
+  * Go to the `upgrade-role` channel
+  * Type `/checkip`
+  * Enter your `IP` & `Node Address`
 
-**Step 1: Get the latest proven block number:**
-```bash
-curl -s -X POST -H 'Content-Type: application/json' \
--d '{"jsonrpc":"2.0","method":"node_getL2Tips","params":[],"id":67}' \
-http://localhost:8080 | jq -r ".result.proven.number"
-```
-* Save this block number for the next steps
-* Example output: 20905
+* If you are not eligible to claim the Guardian role, wait until the next snapshot.
 
-**Step 2: Generate your sync proof**
-```bash
-curl -s -X POST -H 'Content-Type: application/json' \
--d '{"jsonrpc":"2.0","method":"node_getArchiveSiblingPath","params":["BLOCK_NUMBER","BLOCK_NUMBER"],"id":67}' \
-http://localhost:8080 | jq -r ".result"
-```
-* Replace 2x `BLOCK_NUMBER` with your number
-
-**Step 3: Register with Discord**
-* Type the following command in this Discord server: `/operator start`
-* After typing the command, Discord will display option fields that look like this:
-* `address`:            Your validator address (Ethereum Address)
-* `block-number`:      Block number for verification (Block number from Step 1)
-* `proof`:             Your sync proof (base64 string from Step 2)
-
-Then you'll get your `Apprentice` Role
-
-![image](https://github.com/user-attachments/assets/2ae9ff7c-59ba-43ec-9a23-76ef8ccb997c)
