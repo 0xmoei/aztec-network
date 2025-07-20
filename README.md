@@ -404,6 +404,60 @@ Replace the following variables before you Run the node:
 
 ---
 
+## Run Multiple Validators
+### Docker Method
+1- Open `docker-compose.yml`
+```
+cd aztec
+nano docker-compose.yml
+```
+
+2- Update private key:
+* Update `VALIDATOR_PRIVATE_KEY: ${VALIDATOR_PRIVATE_KEY}` under `environment` with the following:
+```
+VALIDATOR_PRIVATE_KEYS: ${VALIDATOR_PRIVATE_KEYS}
+```
+* We added `s`
+
+3- Add publisher key variable:
+* Adding a publisher wallet will make you handle all the transactions of your validators with on wallet
+* Add `SEQ_PUBLISHER_PRIVATE_KEY: ${SEQ_PUBLISHER_PRIVATE_KEY}` somewhere under `environment` in `docker-compose.yml`
+
+
+4- Open `.env`
+```
+nano .env
+```
+
+5- Update private key:
+* Update `VALIDATOR_PRIVATE_KEY` to `VALIDATOR_PRIVATE_KEYS`
+* Values of `VALIDATOR_PRIVATE_KEYS` must be a comma (`,`) separated list. (`"0x123...,0x234...,0x345..."`)
+
+6- Optional: Add publisher key variable:
+`SEQ_PUBLISHER_PRIVATE_KEY`: The value of this is the privatekey of the wallet positng the transactions. This means you only need to fund sepETH to this wallet if you run multiple validators.
+
+#
+
+### CLI Method
+* 1- Update your CLI start command to use `--sequencer.validatorPrivateKeys` (see added `s`) instead of `--sequencer.validatorPrivateKey` if you want to run multiple validators.
+  * The value of this should be a comma (`,`) separated list, team is encouraging users to run 10 validators.
+   
+* 2- Optional: Use `--sequencer.publisherPrivateKey` which will be the address the transactions are posted from. This means you only need to fund sepETH to this address if you run multiple validators.
+
+Example:
+```
+aztec start --node --archiver --sequencer \
+  --network alpha-testnet \
+  --l1-rpc-urls RPC_URL  \
+  --l1-consensus-host-urls BEACON_URL \
+  --sequencer.validatorPrivateKeys "0xPrivatekey1,0xPrivatekey2,0xPrivatekey3" \
+  --sequencer.publisherPrivateKey 0xPrivatekeyX
+  --sequencer.coinbase 0xYourAddress \
+  --p2p.p2pIp IP
+```
+
+---
+
 ## Troubleshooting:
 If you encountered: `ERROR: world-state:block_stream Error processing block stream: Error: Obtained L1 to L2 messages failed to be hashed to the block inHash`
 
