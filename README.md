@@ -364,7 +364,7 @@ rm -rf ~/.aztec/alpha-testnet/data/
 docker compose up -d
 ```
 * Make sure you are in `aztec` directory where `docker-compose.yml` file exists.
-* You can read rhe full details of running the node via [docker compose](#method-1-run-via-docker)
+* You can read the full details of running the node via [docker compose](#method-1-run-via-docker)
 
 #
 
