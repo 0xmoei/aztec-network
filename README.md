@@ -165,7 +165,7 @@ ufw allow 8080
 ## 9. Run Sequencer Node
 You can run Sequencer Node through one of these two methods: `Docker` or `CLI`
 
-### Method 1: Run via Docker (Recommended)
+### Method 1: Run via Docker
 * Delete CLI Node
 ```bash
 # Stop docker containers
@@ -332,30 +332,75 @@ https://aztec.denodes.app/dashboard
 
 ---
 
-## 🔃 Update Sequencer Node
-### 1- Stop Node:
+## 🔃 Update Sequencer Node (
+
+### Update docker-compose method Nodes
+1- Stop node
 ```console
 docker stop $(docker ps -q --filter "ancestor=aztecprotocol/aztec") && docker rm $(docker ps -a -q --filter "ancestor=aztecprotocol/aztec")
 
-screen -ls | grep -i aztec | awk '{print $1}' | xargs -I {} screen -X -S {} quit
+# Or
+
+cd aztec
+docker compose down -v
 ```
 
-### 2- Update Node:
+2- Update CLI commands
 ```bash
 source ~/.bashrc
-aztec-up latest
+aztec-up 1.1.0
 ```
 
-### 3- Delete old data:
+3- Update `docker-compose.yml` image
+* Update `aztecprotocol/aztec:latest` to: `aztecprotocol/aztec:1.1.0`
+
+4- Delete old data
 ```bash
 rm -rf ~/.aztec/alpha-testnet/data/
 ```
 
-### 4- Re-run Node
-* `CLI` nodes: Re-run using your previous CLI command.
-* `Docker` nodes: Re-run by entering `cd aztec && docker compose up -d`
-  * `Docker` nodes: Ensure your `docker-compose.yml` file is updated to match my configuration provided in the guide.
-* For more detailed steps, return to [Step 9: Run Sequencer Node](https://github.com/0xmoei/aztec-network/blob/main/README.md#9-run-sequencer-node) to re-run your node.
+5- Rerun your node
+```
+docker compose up -d
+```
+* Make sure you are in `aztec` directory where `docker-compose.yml` file exists.
+* You can read rhe full details of running the node via [docker compose](#method-1-run-via-docker)
+
+#
+
+### Update CLI method Nodes
+1- Stop node
+```
+screen -ls | grep -i aztec | awk '{print $1}' | xargs -I {} screen -X -S {} quit
+```
+* Or manually stop the screen session you are running your node in it
+
+2- Update CLI commands
+```bash
+source ~/.bashrc
+aztec-up 1.1.0
+```
+
+3- Delete old data
+```bash
+rm -rf ~/.aztec/alpha-testnet/data/
+```
+
+4- Rerun using this CLI command
+```bash
+aztec start --node --archiver --sequencer \
+  --network alpha-testnet \
+  --l1-rpc-urls RPC_URL  \
+  --l1-consensus-host-urls BEACON_URL \
+  --sequencer.validatorPrivateKey 0xYourPrivateKey \
+  --sequencer.coinbase 0xYourAddress \
+  --p2p.p2pIp IP
+```
+Replace the following variables before you Run the node:
+* `RPC_URL` & `BEACON_URL`: Step 4
+* `0xYourPrivateKey`: Your EVM wallet private key starting with `0x...`
+* `0xYourAddress`: Your EVM wallet public address starting with `0x...`
+* `IP`: Your server IP (Step 7)
 
 ---
 
