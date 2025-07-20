@@ -332,7 +332,7 @@ https://aztec.denodes.app/dashboard
 
 ---
 
-## 🔃 Update Sequencer Node (
+## 🔃 Update Sequencer Node
 
 ### Update docker-compose method Nodes
 1- Stop node
