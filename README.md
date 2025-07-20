@@ -405,6 +405,8 @@ Replace the following variables before you Run the node:
 ---
 
 ## Run Multiple Validators
+This step seems limited to only teams and individuals with `Defender` roles. Team is encouraging teams to run 10 validators.
+
 ### Docker Method
 1- Open `docker-compose.yml`
 ```
@@ -440,7 +442,7 @@ nano .env
 
 ### CLI Method
 * 1- Update your CLI start command to use `--sequencer.validatorPrivateKeys` (see added `s`) instead of `--sequencer.validatorPrivateKey` if you want to run multiple validators.
-  * The value of this should be a comma (`,`) separated list, team is encouraging users to run 10 validators.
+  * The value of this should be a comma (`,`) separated list.
    
 * 2- Optional: Use `--sequencer.publisherPrivateKey` which will be the address the transactions are posted from. This means you only need to fund sepETH to this address if you run multiple validators.
 
