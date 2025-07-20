@@ -351,15 +351,12 @@ source ~/.bashrc
 aztec-up 1.1.0
 ```
 
-3- Update `docker-compose.yml` image
-* Update `aztecprotocol/aztec:latest` to: `aztecprotocol/aztec:1.1.0`
-
-4- Delete old data
+3- Delete old data
 ```bash
 rm -rf ~/.aztec/alpha-testnet/data/
 ```
 
-5- Rerun your node
+4- Rerun your node
 ```
 docker compose up -d
 ```
