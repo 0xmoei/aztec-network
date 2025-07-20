@@ -328,10 +328,7 @@ sudo docker logs $(docker ps -q --filter ancestor=aztecprotocol/aztec:latest | h
 
 ## Sequencer/Validator Health Check
 * Validator attestation stats:
-
-https://t.me/aztec_seer_bot
-
-![image](https://github.com/user-attachments/assets/04ca9f5d-ba72-43be-98ad-3601255000bf)
+https://aztec.denodes.app/dashboard
 
 ---
 
