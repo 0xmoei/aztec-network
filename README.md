@@ -402,7 +402,7 @@ Replace the following variables before you Run the node:
 ---
 
 ## Run Multiple Validators
-This step seems limited to only teams and individuals with `Defender` roles. Team is encouraging teams to run 10 validators.
+This step seems limited to only teams and individuals in active set. Team is encouraging teams to run 10 validators.
 
 ### Docker Method
 1- Open `docker-compose.yml`
@@ -435,6 +435,9 @@ nano .env
 6- Optional: Add publisher key variable:
 `SEQ_PUBLISHER_PRIVATE_KEY`: The value of this is the privatekey of the wallet positng the transactions. This means you only need to fund sepETH to this wallet if you run multiple validators.
 
+7- Register each validator on the network
+* Do it manually or reach the team.
+
 #
 
 ### CLI Method
@@ -454,6 +457,9 @@ aztec start --node --archiver --sequencer \
   --sequencer.coinbase 0xYourAddress \
   --p2p.p2pIp IP
 ```
+
+* 3- Register each validator on the network
+  * Do it manually or reach the team.
 
 ---
 
