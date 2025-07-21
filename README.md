@@ -375,7 +375,7 @@ screen -ls | grep -i aztec | awk '{print $1}' | xargs -I {} screen -X -S {} quit
 2- Update CLI commands
 ```bash
 source ~/.bashrc
-aztec-up 1.1.0
+aztec-up 1.1.2
 ```
 
 3- Delete old data
