@@ -6,7 +6,7 @@ A step by step guide on How to Run `Sequencer Node` on Aztec Network Testnet & E
   * `Prover`: generates ZK proofs that attest to roll-up integrity.
 
 ## Roles Info
-Sequecner Nodes will receive a certain role for their contribution on Discord.
+Sequencer Nodes will receive a certain role for their contribution on Discord.
 
 After running and syncing your Sequencer node, You can go through [Get Role](https://github.com/0xmoei/aztec-network/blob/main/README.md#get-apprentice-discord-role) step.
 
@@ -40,7 +40,7 @@ After running and syncing your Sequencer node, You can go through [Get Role](htt
 
 ---
 
-## 1. Install Dependecies
+## 1. Install Dependencies
 * Update packages:
 ```bash
 sudo apt-get update && sudo apt-get upgrade -y
@@ -48,7 +48,7 @@ sudo apt-get update && sudo apt-get upgrade -y
 
 * Install Packages:
 ```bash
-sudo apt install curl iptables build-essential git wget lz4 jq make gcc nano automake autoconf tmux htop nvme-cli libgbm1 pkg-config libssl-dev libleveldb-dev tar clang bsdmainutils ncdu unzip libleveldb-dev  -y
+sudo apt install curl iptables build-essential git wget lz4 jq make gcc nano automake autoconf tmux htop nvme-cli libgbm1 pkg-config libssl-dev libleveldb-dev tar clang bsdmainutils ncdu unzip -y
 ```
 
 * Install Docker:
@@ -235,7 +235,7 @@ services:
     volumes:
       - /root/.aztec/alpha-testnet/data/:/data
 ```
-Note: My node data directory configued in `docker-compose.yml` is `/root/.aztec/alpha-testnet/data/`, yours can be anything.
+Note: My node data directory configured in `docker-compose.yml` is `/root/.aztec/alpha-testnet/data/`, yours can be anything.
 
 * Run Node Docker:
 ```bash
@@ -278,15 +278,15 @@ Replace the following variables before you Run Node:
 
 ### Optional Commands:
 **Screen Commands:**
-* Minimze screen: `Ctrl` + `A` + `D`
+* Minimize screen: `Ctrl` + `A` + `D`
 * Return to screen: `screen -r aztec`
-* Kill screen (when inside): `Ctrl`+`C+
+* Kill screen (when inside): `Ctrl` + `C`
 * Kill screen (when outside): `screen -XS aztec quit`
 
 ---
 
 ## 10. Sync Node
-After entering the command, your node starts running, It takes a few minutes for your node to get synced.
+After entering the command, your node will start running. It may take a few minutes for your node to sync.
 
 * Check the latest synced block number of your sequencer:
 ```
@@ -311,8 +311,8 @@ aztec add-l1-validator \
 ```
 Replace `RPC_URL`, `your-validator-address` & 2x `your-validator-address`, then proceed
 
-* Note: There's a daily quota of 5 validators registration per day, if you get error, try again tommorrow.
-* If your Validator's Registration was successfull, you can check its stats on [Aztec Scan](https://aztecscan.xyz/validators)
+* Note: There's a daily quota of 5 validators registration per day, if you get error, try again tomorrow.
+* If your Validator registration was successful, you can check its stats on [Aztec Scan](https://aztecscan.xyz/validators)
 
 ---
 
@@ -322,7 +322,7 @@ Replace `RPC_URL`, `your-validator-address` & 2x `your-validator-address`, then 
 sudo docker logs $(docker ps -q --filter ancestor=aztecprotocol/aztec:latest | head -n 1) 2>&1 | grep -i "peerId" | grep -o '"peerId":"[^"]*"' | cut -d'"' -f4 | head -n 1
 ```
 * This reveals your Node's Peer ID, Now search it on [Nethermind Explorer](https://aztec.nethermind.io/)
-* Note: It might takes some hours for your node to show up in Nethermind Explorer after it fully synced.
+* Note: It might take some hours for your node to show up in Nethermind Explorer after it fully synced.
 
 ---
 
