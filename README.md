@@ -1,3 +1,5 @@
+<img width="680" height="340" alt="image" src="https://github.com/user-attachments/assets/0198638d-6087-4ec5-b90a-dc305188db29" />
+
 # Aztec Network Sequencer Node
 A step by step guide on How to Run `Sequencer Node` on Aztec Network Testnet & Earn `Apprentice` Role.
 
@@ -299,36 +301,20 @@ http://localhost:8080 | jq -r ".result.proven.number"
 ---
 
 ## 11. Register Validator
-Make sure your Sequencer node is fully synced, before you proceed with Validator registration
-```bash
-aztec add-l1-validator \
-  --l1-rpc-urls RPC_URL \
-  --private-key your-private-key \
-  --attester your-validator-address \
-  --proposer-eoa your-validator-address \
-  --staking-asset-handler 0xF739D03e98e23A7B65940848aBA8921fF3bAc4b2 \
-  --l1-chain-id 11155111
-```
-Replace `RPC_URL`, `your-validator-address` & 2x `your-validator-address`, then proceed
+Make sure your Sequencer node is fully synced, before you proceed with Validator registration.
 
-* Note: There's a daily quota of 5 validators registration per day, if you get error, try again tommorrow.
-* If your Validator's Registration was successfull, you can check its stats on [Aztec Scan](https://aztecscan.xyz/validators)
+**Official Validator Registration: ZKPassport**
+* Visit: https://testnet.aztec.network/add-validator
+* Complete ZKPassport humanity verification
+* Follow the steps to connect your validator wallet and register your validator on the network
+* After competion, you will get into the queue of validator registration and will earn **Explorer** discord role
 
 ---
 
-## 12. Verify Node's Peer ID:
-**Find your Node's Peer ID:**
-```bash
-sudo docker logs $(docker ps -q --filter ancestor=aztecprotocol/aztec:latest | head -n 1) 2>&1 | grep -i "peerId" | grep -o '"peerId":"[^"]*"' | cut -d'"' -f4 | head -n 1
-```
-* This reveals your Node's Peer ID, Now search it on [Nethermind Explorer](https://aztec.nethermind.io/)
-* Note: It might takes some hours for your node to show up in Nethermind Explorer after it fully synced.
-
----
-
-## Sequencer/Validator Health Check
-* Validator attestation stats:
-https://aztec.denodes.app/dashboard
+## 12. Aztec Dashboard
+* Visit the [Dashboard](https://dashtec.xyz/)
+* Check your validators health
+* Connect your X & Discord
 
 ---
 
@@ -402,7 +388,7 @@ Replace the following variables before you Run the node:
 ---
 
 ## Run Multiple Validators
-This step seems limited to only teams and individuals in active set. Team is encouraging teams to run 10 validators.
+This step seems limited to only teams and individuals in active set. Team is encouraging teams to run 10 validators. Ask the team if you are going to run more validators
 
 ### Docker Method
 1- Open `docker-compose.yml`
