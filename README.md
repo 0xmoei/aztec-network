@@ -101,7 +101,7 @@ aztec
 
 ## 3. Update Aztec
 ```bash
-aztec-up latest
+aztec-up 1.1.2
 ```
 
 ---
