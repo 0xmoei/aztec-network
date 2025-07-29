@@ -101,7 +101,7 @@ aztec
 
 ## 3. Update Aztec
 ```bash
-aztec-up 1.1.2
+aztec-up 1.2.0
 ```
 
 ---
@@ -334,7 +334,7 @@ docker compose down -v
 2- Update CLI commands
 ```bash
 source ~/.bashrc
-aztec-up 1.1.2
+aztec-up 1.2.0
 ```
 
 3- Delete old data
@@ -361,7 +361,7 @@ screen -ls | grep -i aztec | awk '{print $1}' | xargs -I {} screen -X -S {} quit
 2- Update CLI commands
 ```bash
 source ~/.bashrc
-aztec-up 1.1.2
+aztec-up 1.2.0
 ```
 
 3- Delete old data
