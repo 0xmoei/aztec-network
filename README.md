@@ -347,6 +347,7 @@ rm -rf ~/.aztec/alpha-testnet/data/
 nano docker-compose.yml
 ```
 * We update the `network` and the new `volume` directory to `testnet`
+* Ensure your `image:` is `aztecprotocol/aztec:latest` or `aztecprotocol/aztec:2.0.2`
 
 <img width="1271" height="205" alt="image" src="https://github.com/user-attachments/assets/6007268a-171d-42ce-9ab2-34f5dc076d7f" />
 
