@@ -351,6 +351,8 @@ nano docker-compose.yml
 
 <img width="1271" height="205" alt="image" src="https://github.com/user-attachments/assets/6007268a-171d-42ce-9ab2-34f5dc076d7f" />
 
+<img width="1350" height="398" alt="image" src="https://github.com/user-attachments/assets/45f43023-6a4d-4ef8-9e75-f31572dcc76e" />
+
 
 5- Rerun your node
 ```
