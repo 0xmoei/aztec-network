@@ -101,7 +101,7 @@ aztec
 
 ## 3. Update Aztec
 ```bash
-aztec-up 1.2.0
+aztec-up 2.0.2
 ```
 
 ---
@@ -229,15 +229,15 @@ services:
       P2P_IP: ${P2P_IP}
       LOG_LEVEL: debug
     entrypoint: >
-      sh -c 'node --no-warnings /usr/src/yarn-project/aztec/dest/bin/index.js start --network alpha-testnet --node --archiver --sequencer'
+      sh -c 'node --no-warnings /usr/src/yarn-project/aztec/dest/bin/index.js start --network testnet --node --archiver --sequencer'
     ports:
       - 40400:40400/tcp
       - 40400:40400/udp
       - 8080:8080
     volumes:
-      - /root/.aztec/alpha-testnet/data/:/data
+      - /root/.aztec/testnet/data/:/data
 ```
-Note: My node data directory configued in `docker-compose.yml` is `/root/.aztec/alpha-testnet/data/`, yours can be anything.
+Note: My node data directory configued in `docker-compose.yml` is `/root/.aztec/testnet/data/`, yours can be anything.
 
 * Run Node Docker:
 ```bash
@@ -265,7 +265,7 @@ screen -S aztec
 * Run Node
 ```
 aztec start --node --archiver --sequencer \
-  --network alpha-testnet \
+  --network testnet \
   --l1-rpc-urls RPC_URL  \
   --l1-consensus-host-urls BEACON_URL \
   --sequencer.validatorPrivateKey 0xYourPrivateKey \
@@ -334,15 +334,24 @@ docker compose down -v
 2- Update CLI commands
 ```bash
 source ~/.bashrc
-aztec-up 1.2.0
+aztec-up 2.0.2
 ```
 
-3- Delete old data
+3- Delete old `alpha-testnet` data
 ```bash
 rm -rf ~/.aztec/alpha-testnet/data/
 ```
 
-4- Rerun your node
+4- Update `alpha-testnet` to `testnet` in `docker-compose.yml`
+```bash
+nano docker-compose.yml
+```
+* We update the `network` and the new `volume` directory to `testnet`
+
+<img width="1271" height="205" alt="image" src="https://github.com/user-attachments/assets/6007268a-171d-42ce-9ab2-34f5dc076d7f" />
+
+
+5- Rerun your node
 ```
 docker compose up -d
 ```
@@ -361,10 +370,10 @@ screen -ls | grep -i aztec | awk '{print $1}' | xargs -I {} screen -X -S {} quit
 2- Update CLI commands
 ```bash
 source ~/.bashrc
-aztec-up 1.2.0
+aztec-up 2.0.2
 ```
 
-3- Delete old data
+3- Delete old `alpha-testnet` data
 ```bash
 rm -rf ~/.aztec/alpha-testnet/data/
 ```
@@ -372,7 +381,7 @@ rm -rf ~/.aztec/alpha-testnet/data/
 4- Rerun using this CLI command
 ```bash
 aztec start --node --archiver --sequencer \
-  --network alpha-testnet \
+  --network testnet \
   --l1-rpc-urls RPC_URL  \
   --l1-consensus-host-urls BEACON_URL \
   --sequencer.validatorPrivateKey 0xYourPrivateKey \
@@ -435,7 +444,7 @@ nano .env
 Example:
 ```
 aztec start --node --archiver --sequencer \
-  --network alpha-testnet \
+  --network testnet \
   --l1-rpc-urls RPC_URL  \
   --l1-consensus-host-urls BEACON_URL \
   --sequencer.validatorPrivateKeys "0xPrivatekey1,0xPrivatekey2,0xPrivatekey3" \
