@@ -337,12 +337,17 @@ source ~/.bashrc
 aztec-up 2.0.2
 ```
 
-3- Delete old `alpha-testnet` data
+3- Pull the latest docker image:
+```bash
+docker pull aztecprotocol/aztec:latest
+```
+
+4- Delete old `alpha-testnet` data
 ```bash
 rm -rf ~/.aztec/alpha-testnet/data/
 ```
 
-4- Update `alpha-testnet` to `testnet` in `docker-compose.yml`
+5- Update `alpha-testnet` to `testnet` in `docker-compose.yml`
 ```bash
 nano docker-compose.yml
 ```
@@ -354,7 +359,7 @@ nano docker-compose.yml
 <img width="1350" height="398" alt="image" src="https://github.com/user-attachments/assets/45f43023-6a4d-4ef8-9e75-f31572dcc76e" />
 
 
-5- Rerun your node
+6- Rerun your node
 ```
 docker compose up -d
 ```
