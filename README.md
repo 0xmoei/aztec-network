@@ -267,7 +267,7 @@ screen -S aztec
 aztec start --node --archiver --sequencer \
   --network testnet \
   --l1-rpc-urls RPC_URL  \
-  --l1-consensus-host-urls BEACON_URL \
+  --l1-consensus-host-urls "BEACON_URL" \
   --sequencer.validatorPrivateKey 0xYourPrivateKey \
   --sequencer.coinbase 0xYourAddress \
   --p2p.p2pIp IP
